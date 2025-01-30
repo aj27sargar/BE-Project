@@ -1,0 +1,75 @@
+/* General Container Styling */
+.blog-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.blogs-section,
+.news-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Blog and News Cards */
+.blog-card,
+.news-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover,
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-image,
+.news-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-title,
+.news-title {
+  font-size: 1.25rem;
+  margin: 15px;
+  color: #111;
+}
+
+.blog-description,
+.news-description {
+  font-size: 1rem;
+  margin: 0 15px 15px 15px;
+  color: #555;
+}
+
+.blog-button,
+.news-button {
+  display: inline-block;
+  margin: 15px;
+  padding: 10px 20px;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.blog-button:hover,
+.news-button:hover {
+  background-color: #005bb5;
+}
