@@ -1,23 +1,62 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import blogData from "../Blogs/blogs.json";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const BlogDetail = () => {
-  const { id } = useParams();
-  const blog = blogData.find((b) => b._id === id);
+  const location = useLocation();
+  const blog = location.state?.blog;
 
   if (!blog) {
-    return <h2>Blog not found</h2>;
+    return <h2 style={styles.notFound}>Blog not found</h2>;
   }
 
   return (
-    <div className="blog-detail-container">
-      <h1>{blog.title}</h1>
-      <img src={blog.image} alt={blog.title} className="blog-image" />
-      <p>{blog.content}</p>
-      <p>Author: {blog.author}</p>
+    <div style={styles.blogDetailContainer}>
+      <h1 style={styles.title}>{blog.title}</h1>
+      <img src={blog.image} alt={blog.title} style={styles.image} />
+      <p style={styles.content}>{blog.content}</p>
+      <p style={styles.author}>Author: {blog.author}</p>
     </div>
   );
+};
+
+// Inline CSS styles
+const styles = {
+  blogDetailContainer: {
+    width: '80%',
+    margin: '0 auto',
+    textAlign: 'center',
+    padding: '20px',
+    backgroundColor: '#fff',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  },
+  title: {
+    fontSize: '2rem',
+    color: '#333',
+    marginBottom: '15px',
+  },
+  image: {
+    width: '100%',
+    height: '300px',
+    objectFit: 'cover',
+    borderRadius: '8px',
+    marginBottom: '20px',
+  },
+  content: {
+    fontSize: '1.1rem',
+    lineHeight: '1.6',
+    color: '#555',
+  },
+  author: {
+    fontSize: '1rem',
+    color: '#888',
+    marginTop: '15px',
+  },
+  notFound: {
+    textAlign: 'center',
+    fontSize: '1.5rem',
+    color: 'red',
+  },
 };
 
 export default BlogDetail;

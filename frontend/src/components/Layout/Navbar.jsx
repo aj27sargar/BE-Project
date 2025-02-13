@@ -39,14 +39,30 @@ const Navbar = () => {
               HOME
             </Link>
           </li>
-          <li><Link to={"/blogs"} onClick={() => setShow(true)}>
+          {/* <li><Link to={"/blogs"} onClick={() => setShow(true)}>
               BLOGS
             </Link></li>
             <li><Link
               to={"/chatbot"}
               onClick={() => setShow(true)}>
               CHATBOT
-            </Link></li>
+            </Link></li> */}
+            {user && user.role === "Job Seeker" ? (
+            <>
+              <li>
+                <Link to={"/blogs"} onClick={() => setShow(true)}>
+                  BLOGS
+                </Link>
+              </li>
+              <li>
+                <Link to={"/chatbot"} onClick={() => setShow(true)}>
+                  CHATBOT
+                </Link>
+              </li>
+            </>
+          ) : (
+            <></>
+          )}
           <li>
             <Link to={"/job/getall"} onClick={() => setShow(false)}>
               ALL DOCUMENTS

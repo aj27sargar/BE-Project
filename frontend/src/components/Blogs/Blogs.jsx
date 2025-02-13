@@ -1,44 +1,81 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Blogs.css"; // Ensure this includes your CSS for styles
-import blogData from "../Blogs/blogs.json"; // Ensure this path is correct
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import blogData from '../Blogs/blogs.json'; // Import JSON file
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Load blogs from JSON file
-    setBlogs(blogData);
+    setBlogs(blogData); // Load blogs from JSON file
   }, []);
 
-  // Navigate to blog detail page
-  const handleReadMore = (blogId) => {
-    navigate(`/blog-detail/${blogId}`); // Pass blogId in URL
+  const handleReadMore = (blog) => {
+    navigate('/blog-detail', { state: { blog } });
   };
 
   return (
-    <div className="blog-container">
-      <h1>Blogs</h1>
-      {blogs.length > 0 ? (
-        blogs.map((blog) => (
-          <div key={blog._id} className="blog-card">
-            <img src={blog.image} alt={blog.title} className="blog-image" />
-            <h2 className="blog-title">{blog.title}</h2>
-            <p className="blog-description">{blog.description}</p>
-            <button
-              className="blog-button"
-              onClick={() => handleReadMore(blog._id)}
-            >
-              Read More
-            </button>
-          </div>
-        ))
-      ) : (
-        <p>Loading blogs...</p>
-      )}
+    <div style={styles.blogContainer}>
+      <h1 style={styles.heading}>Blogs</h1>
+      {blogs.map((blog) => (
+        <div key={blog._id} style={styles.blogCard}>
+          <img src={blog.image} alt={blog.title} style={styles.blogImage} />
+          <h2 style={styles.blogTitle}>{blog.title}</h2>
+          <p style={styles.blogDescription}>{blog.description}</p>
+          <button style={styles.blogButton} onClick={() => handleReadMore(blog)}>
+            Read More
+          </button>
+        </div>
+      ))}
     </div>
   );
+};
+
+// Inline CSS styles
+const styles = {
+  blogContainer: {
+    width: '80%',
+    margin: '0 auto',
+    textAlign: 'center',
+  },
+  heading: {
+    fontSize: '2rem',
+    marginBottom: '20px',
+    color: '#333',
+  },
+  blogCard: {
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    padding: '16px',
+    marginBottom: '20px',
+    backgroundColor: '#f9f9f9',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  },
+  blogImage: {
+    width: '100%',
+    height: '200px',
+    objectFit: 'cover',
+    borderRadius: '8px',
+  },
+  blogTitle: {
+    fontSize: '1.5rem',
+    margin: '10px 0',
+    color: '#444',
+  },
+  blogDescription: {
+    fontSize: '1rem',
+    color: '#666',
+  },
+  blogButton: {
+    backgroundColor: '#007BFF',
+    color: '#fff',
+    border: 'none',
+    padding: '10px 20px',
+    fontSize: '1rem',
+    cursor: 'pointer',
+    borderRadius: '5px',
+    marginTop: '10px',
+  },
 };
 
 export default Blogs;
