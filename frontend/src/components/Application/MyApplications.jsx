@@ -158,35 +158,71 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
   );
 };
 
-const EmployerCard = ({ element, openModal }) => {
+const EmployerCard = ({ element, openModal, onAccept, onReject }) => {
   return (
-    <>
-      <div className="job_seeker_card">
-        <div className="detail">
-          <p>
-            <span>Name:</span> {element.name}
-          </p>
-          <p>
-            <span>Email:</span> {element.email}
-          </p>
-          <p>
-            <span>Phone:</span> {element.phone}
-          </p>
-          <p>
-            <span>Address:</span> {element.address}
-          </p>
-          <p>
-            <span>CoverLetter:</span> {element.coverLetter}
-          </p>
-        </div>
-        <div className="resume">
-          <img
-            src={element.resume.url}
-            alt="resume"
-            onClick={() => openModal(element.resume.url)}
-          />
-        </div>
+    <div className="job_seeker_card">
+      <div className="detail">
+        <p><span>Name:</span> {element.name}</p>
+        <p><span>Email:</span> {element.email}</p>
+        <p><span>Phone:</span> {element.phone}</p>
+        <p><span>Address:</span> {element.address}</p>
+        <p><span>Cover Letter:</span> {element.coverLetter}</p>
       </div>
-    </>
+      <div className="resume">
+        <img
+          src={element.resume.url}
+          alt="resume"
+          onClick={() => openModal(element.resume.url)}
+        />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "10px" }}>
+        <button 
+          style={{
+            padding: "8px 12px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontWeight: "bold",
+            backgroundColor: "#4CAF50",
+            color: "white",
+            width: "100px",
+            marginBottom: "10px"
+          }} 
+          onClick={() => onAccept(element)}
+        >
+          Accept
+        </button>
+        <button 
+          style={{
+            padding: "8px 12px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontWeight: "bold",
+            backgroundColor: "#FF4D4D",
+            color: "white",
+            width: "100px",
+            marginBottom: "10px"
+          }} 
+          onClick={() => onReject(element)}
+        >
+          Reject
+        </button>
+        <button 
+          style={{
+            padding: "8px 12px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontWeight: "bold",
+            backgroundColor: "blue",
+            color: "white",
+            width: "100px"
+          }} 
+          onClick={() => onReject(element)}
+        >Correction
+        </button>
+      </div>
+    </div>
   );
 };
