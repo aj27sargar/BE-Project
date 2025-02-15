@@ -8,6 +8,7 @@ const Jobs = () => {
   const { isAuthorized } = useContext(Context);
   const navigateTo = useNavigate();
   useEffect(() => {
+    
     try {
       axios
         .get("http://localhost:4000/api/v1/job/getall", {

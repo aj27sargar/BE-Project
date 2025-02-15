@@ -62,8 +62,8 @@ const Register = () => {
               <div>
                 <select value={role} onChange={(e) => setRole(e.target.value)}>
                   <option value="">Select Role</option>
-                  <option value="Employer">Employer</option>
-                  <option value="Job Seeker">Job Seeker</option>
+                  <option value="Job Seeker">User</option>
+                  <option value="Employer">Lawer</option>
                 </select>
                 <FaRegUser />
               </div>
@@ -97,7 +97,7 @@ const Register = () => {
               <div>
                 <input
                   type="number"
-                  placeholder="12345678"
+                  placeholder="12345XXXXX"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
