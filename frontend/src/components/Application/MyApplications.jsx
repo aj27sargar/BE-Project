@@ -16,9 +16,9 @@ const MyApplications = () => {
 
   useEffect(() => {
     try {
-      if (user && user.role === "Employer") {
+      if (user && user.role === "Lawyer") {
         axios
-          .get("http://localhost:4000/api/v1/application/employer/getall", {
+          .get("http://localhost:4000/api/v1/application/lawyer/getall", {
             withCredentials: true,
           })
           .then((res) => {
@@ -26,7 +26,7 @@ const MyApplications = () => {
           });
       } else {
         axios
-          .get("http://localhost:4000/api/v1/application/jobseeker/getall", {
+          .get("http://localhost:4000/api/v1/application/user/getall", {
             withCredentials: true,
           })
           .then((res) => {
@@ -70,18 +70,15 @@ const MyApplications = () => {
 
   return (
     <section className="my_applications page">
-      {user && user.role === "Job Seeker" ? (
+      {user && user.role === "User" ? (
         <div className="container">
           <h1>My Applications</h1>
           {applications.length <= 0 ? (
-            <>
-              {" "}
-              <h4>No Applications Found</h4>{" "}
-            </>
+            <h4>No Applications Found</h4>
           ) : (
             applications.map((element) => {
               return (
-                <JobSeekerCard
+                <UserCard
                   element={element}
                   key={element._id}
                   deleteApplication={deleteApplication}
@@ -95,13 +92,11 @@ const MyApplications = () => {
         <div className="container">
           <h1>Applications From Users</h1>
           {applications.length <= 0 ? (
-            <>
-              <h4>No Applications Found</h4>
-            </>
+            <h4>No Applications Found</h4>
           ) : (
             applications.map((element) => {
               return (
-                <EmployerCard
+                <LawyerCard
                   element={element}
                   key={element._id}
                   openModal={openModal}
@@ -111,56 +106,42 @@ const MyApplications = () => {
           )}
         </div>
       )}
-      {modalOpen && (
-        <ResumeModal imageUrl={resumeImageUrl} onClose={closeModal} />
-      )}
+      {modalOpen && <ResumeModal imageUrl={resumeImageUrl} onClose={closeModal} />}
     </section>
   );
 };
 
 export default MyApplications;
 
-const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
+const UserCard = ({ element, deleteApplication, openModal }) => {
   return (
-    <>
-      <div className="job_seeker_card">
-        <div className="detail">
-          <p>
-            <span>Name:</span> {element.name}
-          </p>
-          <p>
-            <span>Email:</span> {element.email}
-          </p>
-          <p>
-            <span>Phone:</span> {element.phone}
-          </p>
-          <p>
-            <span>Address:</span> {element.address}
-          </p>
-          <p>
-            <span>CoverLetter:</span> {element.coverLetter}
-          </p>
-        </div>
-        <div className="resume">
-          <img
-            src={element.resume.url}
-            alt="resume"
-            onClick={() => openModal(element.resume.url)}
-          />
-        </div>
-        <div className="btn_area">
-          <button onClick={() => deleteApplication(element._id)}>
-            Delete Application
-          </button>
-        </div>
+    <div className="user_card">
+      <div className="detail">
+        <p><span>Name:</span> {element.name}</p>
+        <p><span>Email:</span> {element.email}</p>
+        <p><span>Phone:</span> {element.phone}</p>
+        <p><span>Address:</span> {element.address}</p>
+        <p><span>Cover Letter:</span> {element.coverLetter}</p>
       </div>
-    </>
+      <div className="resume">
+        <img
+          src={element.resume.url}
+          alt="resume"
+          onClick={() => openModal(element.resume.url)}
+        />
+      </div>
+      <div className="btn_area">
+        <button onClick={() => deleteApplication(element._id)}>
+          Delete Application
+        </button>
+      </div>
+    </div>
   );
 };
 
-const EmployerCard = ({ element, openModal, onAccept, onReject }) => {
+const LawyerCard = ({ element, openModal, onAccept, onReject }) => {
   return (
-    <div className="job_seeker_card">
+    <div className="user_card">
       <div className="detail">
         <p><span>Name:</span> {element.name}</p>
         <p><span>Email:</span> {element.email}</p>
@@ -220,7 +201,8 @@ const EmployerCard = ({ element, openModal, onAccept, onReject }) => {
             width: "100px"
           }} 
           onClick={() => onReject(element)}
-        >Correction
+        >
+          Correction
         </button>
       </div>
     </div>

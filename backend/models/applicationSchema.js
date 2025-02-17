@@ -27,11 +27,11 @@ const applicationSchema = new mongoose.Schema({
   },
   resume: {
     public_id: {
-      type: String, 
+      type: String,
       required: true,
     },
     url: {
-      type: String, 
+      type: String,
       required: true,
     },
   },
@@ -43,7 +43,7 @@ const applicationSchema = new mongoose.Schema({
     },
     role: {
       type: String,
-      enum: ["Job Seeker"],
+      enum: ["Job Seeker"], // Updated from ["User"] to ["Job Seeker"]
       required: true,
     },
   },
@@ -55,7 +55,7 @@ const applicationSchema = new mongoose.Schema({
     },
     role: {
       type: String,
-      enum: ["Employer"],
+      enum: ["Employer"], // Updated from ["Lawyer"] to ["Employer"]
       required: true,
     },
   },

@@ -43,10 +43,9 @@ const Register = () => {
     }
   };
 
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
+  if (isAuthorized) {
+    return <Navigate to={"/"} />;
   }
-
 
   return (
     <>
@@ -62,8 +61,8 @@ const Register = () => {
               <div>
                 <select value={role} onChange={(e) => setRole(e.target.value)}>
                   <option value="">Select Role</option>
-                  <option value="Job Seeker">User</option>
-                  <option value="Employer">Lawer</option>
+                  <option value="User">User</option>
+                  <option value="Lawyer">Lawyer</option>
                 </select>
                 <FaRegUser />
               </div>

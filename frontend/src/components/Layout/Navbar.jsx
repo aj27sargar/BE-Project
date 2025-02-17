@@ -47,7 +47,7 @@ const Navbar = () => {
               onClick={() => setShow(true)}>
               CHATBOT
             </Link></li> */}
-            {user && user.role === "Job Seeker" ? (
+            {user && user.role === "User" ? (
             <>
               <li>
                 <Link to={"/blogs"} onClick={() => setShow(true)}>
@@ -70,12 +70,12 @@ const Navbar = () => {
           </li>
           <li>
             <Link to={"/applications/me"} onClick={() => setShow(false)}>
-              {user && user.role === "Employer"
+              {user && user.role === "Lawyer"
                 ? "APPLICANT'S APPLICATIONS"
                 : "MY APPLICATIONS"}
             </Link>
           </li>
-          {user && user.role === "Employer" ? (
+          {user && user.role === "Lawyer" ? (
             <>
               <li>
                 <Link to={"/job/post"} onClick={() => setShow(false)}>

@@ -388,7 +388,7 @@ const MyJobs = () => {
     fetchJobs();
   }, []);
 
-  if (!isAuthorized || (user && user.role !== "Employer")) {
+  if (!isAuthorized || (user && user.role !== "Lawyer")) {
     navigateTo("/");
   }
 
