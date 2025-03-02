@@ -8,6 +8,7 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+import JobZeelogo from "../../assets/lawyer12.jpeg"; 
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -52,7 +53,7 @@ const Register = () => {
       <section className="authPage">
         <div className="container">
           <div className="header">
-            <img src="/JobZeelogo.png" alt="logo" />
+            <img src={JobZeelogo} alt="logo" />
             <h3>Create a new account</h3>
           </div>
           <form>

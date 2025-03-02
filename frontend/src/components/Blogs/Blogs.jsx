@@ -52,8 +52,8 @@ const styles = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
   },
   blogImage: {
-    width: '100%',
-    height: '200px',
+    width: '70%',
+    height: '400px',
     objectFit: 'cover',
     borderRadius: '8px',
   },

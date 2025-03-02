@@ -83,35 +83,33 @@
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Job Title"
+                  placeholder="Application Title"
                 />
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                 >
                   <option value="">Select Category</option>
-                  <option value="Graphics & Design">Graphics & Design</option>
-                  <option value="Mobile App Development">
-                    Mobile App Development
-                  </option>
-                  <option value="Frontend Web Development">
-                    Frontend Web Development
-                  </option>
-                  <option value="MERN Stack Development">
-                    MERN STACK Development
-                  </option>
-                  <option value="Account & Finance">Account & Finance</option>
-                  <option value="Artificial Intelligence">
-                    Artificial Intelligence
-                  </option>
-                  <option value="Video Animation">Video Animation</option>
-                  <option value="MEAN Stack Development">
-                    MEAN STACK Development
-                  </option>
-                  <option value="MEVN Stack Development">
-                    MEVN STACK Development
-                  </option>
-                  <option value="Data Entry Operator">Data Entry Operator</option>
+                  <option value="Rent Agreement">Rent Agreement</option>
+<option value="Sale Deed">Sale Deed</option>
+<option value="Power of Attorney">Power of Attorney</option>
+<option value="Partnership Agreement">Partnership Agreement</option>
+<option value="Non-Disclosure Agreement (NDA)">Non-Disclosure Agreement (NDA)</option>
+<option value="Employment Contract">Employment Contract</option>
+<option value="Legal Notice">Legal Notice</option>
+<option value="Will & Testament">Will & Testament</option>
+<option value="Affidavit">Affidavit</option>
+<option value="Divorce Agreement">Divorce Agreement</option>
+<option value="Loan Agreement">Loan Agreement</option>
+<option value="Vendor Agreement">Vendor Agreement</option>
+<option value="Franchise Agreement">Franchise Agreement</option>
+<option value="Service Agreement">Service Agreement</option>
+<option value="Lease Agreement">Lease Agreement</option>
+<option value="Memorandum of Understanding (MoU)">Memorandum of Understanding (MoU)</option>
+<option value="Shareholder Agreement">Shareholder Agreement</option>
+<option value="Consumer Complaint">Consumer Complaint</option>
+<option value="Intellectual Property Assignment">Intellectual Property Assignment</option>
+
                 </select>
               </div>
               <div className="wrapper">
@@ -139,17 +137,17 @@
                   value={salaryType}
                   onChange={(e) => setSalaryType(e.target.value)}
                 >
-                  <option value="default">Select Salary Type</option>
-                  <option value="Fixed Salary">Fixed Salary</option>
-                  <option value="Ranged Salary">Ranged Salary</option>
+                  <option value="default">Select Document validity Type</option>
+                  <option value="Fixed Salary">Fixed validity</option>
+                  <option value="Ranged Salary">Ranged validity</option>
                 </select>
                 <div>
                   {salaryType === "default" ? (
-                    <p>Please provide Salary Type *</p>
+                    <p>Please provide Valedity Type *</p>
                   ) : salaryType === "Fixed Salary" ? (
                     <input
                       type="number"
-                      placeholder="Enter Fixed Salary"
+                      placeholder="Enter Fixed validity"
                       value={fixedSalary}
                       onChange={(e) => setFixedSalary(e.target.value)}
                     />
@@ -157,13 +155,13 @@
                     <div className="ranged_salary">
                       <input
                         type="number"
-                        placeholder="Salary From"
+                        placeholder="validity From"
                         value={salaryFrom}
                         onChange={(e) => setSalaryFrom(e.target.value)}
                       />
                       <input
                         type="number"
-                        placeholder="Salary To"
+                        placeholder="validity To"
                         value={salaryTo}
                         onChange={(e) => setSalaryTo(e.target.value)}
                       />
@@ -175,9 +173,9 @@
                 rows="10"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Job Description"
+                placeholder="Application Description"
               />
-              <button type="submit">Create Job</button>
+              <button type="submit">Create Application</button>
             </form>
           </div>
         </div>

@@ -74,6 +74,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
       public_id: cloudinaryResponse.public_id,
       url: cloudinaryResponse.secure_url,
     },
+    status: "Pending",  // Default status
   });
   res.status(200).json({
     success: true,
@@ -136,3 +137,30 @@ export const userDeleteApplication = catchAsyncErrors(
     });
   }
 );
+
+// ✅ Lawyer Approves Application (Changes status to "Completed")
+export const approveApplication = catchAsyncErrors(async (req, res, next) => {
+  const { role } = req.user;
+
+  // ✅ Allow only Lawyers to approve applications
+  if (role === "Employer") {
+    return next(new ErrorHandler("Only Lawyers can approve applications.", 403));
+  }
+
+  const { id } = req.params;
+  const application = await Application.findById(id);
+
+  if (!application) {
+    return next(new ErrorHandler("Application not found!", 404));
+  }
+
+  // ✅ Update status to Completed
+  application.status = "Completed";
+  await application.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Application approved successfully",
+    application, // ✅ Returning updated application
+  });
+});

@@ -10,11 +10,12 @@ const Application = () => {
   const [coverLetter, setCoverLetter] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [expiryDate, setExpiryDate] = useState(""); // New State for Date Field
   const [resume, setResume] = useState(null);
 
   const { isAuthorized, user } = useContext(Context);
-
   const navigateTo = useNavigate();
+  const { id } = useParams();
 
   // Function to handle file input changes
   const handleFileChange = (event) => {
@@ -22,7 +23,6 @@ const Application = () => {
     setResume(resume);
   };
 
-  const { id } = useParams();
   const handleApplication = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -31,6 +31,7 @@ const Application = () => {
     formData.append("phone", phone);
     formData.append("address", address);
     formData.append("coverLetter", coverLetter);
+    formData.append("expiryDate", expiryDate); // Added expiryDate
     formData.append("resume", resume);
     formData.append("jobId", id);
 
@@ -50,11 +51,12 @@ const Application = () => {
       setCoverLetter("");
       setPhone("");
       setAddress("");
+      setExpiryDate(""); // Reset expiryDate
       setResume("");
       toast.success(data.message);
       navigateTo("/job/getall");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || "Something went wrong!");
     }
   };
 
@@ -91,16 +93,19 @@ const Application = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
+          <input
+            type="date" // New Date Input
+            value={expiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
+          />
           <textarea
-            placeholder="CoverLetter..."
+            placeholder="Description..."
             value={coverLetter}
             onChange={(e) => setCoverLetter(e.target.value)}
           />
           <div>
-            <label
-              style={{ textAlign: "start", display: "block", fontSize: "20px" }}
-            >
-              Select Resume
+            <label style={{ textAlign: "start", display: "block", fontSize: "20px" }}>
+              Select File
             </label>
             <input
               type="file"

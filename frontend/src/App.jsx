@@ -7,7 +7,7 @@ import Register from "./components/Auth/Register";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Navbar from "./components/Layout/Navbar";
-// import Footer from "./components/Layout/Footer";
+import Footer from "./components/Home/Footer";
 import Home from "./components/Home/Home";
 import Jobs from "./components/Job/Jobs";
 import JobDetails from "./components/Job/JobDetails";
@@ -19,7 +19,9 @@ import MyJobs from "./components/Job/MyJobs";
 import Blogs from "./components/Blogs/Blogs";
 import BlogDetail from "./components/Blogs/BlogDetail";
 import Chatbot from './components/ChatBot/Chatbot';
-
+import Lawyers from './components/Lawyers/lawyers';
+import LawyerDetail from "./components/Lawyers/lawyerDetail";
+import Imp_Linkes from './components/Imp_Linkes/imp_links';
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -59,6 +61,9 @@ const App = () => {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog-detail" element={<BlogDetail />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/lawyers" element={<Lawyers />} />
+          <Route path="/lawyers/:id" element={<LawyerDetail />} />
+          <Route path="/imp_links" element={<Imp_Linkes />} />
         </Routes>
         {/* <Footer /> */}
         <Toaster />

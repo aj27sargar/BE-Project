@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../../main";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
-import lawyerImage from '../../assets/lawyer3.jpeg'
+import lawyerImage from "../../assets/lawyer3.jpeg";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
@@ -13,87 +13,99 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:4000/api/v1/user/logout",
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.get("http://localhost:4000/api/v1/user/logout", {
+        withCredentials: true,
+      });
       toast.success(response.data.message);
       setIsAuthorized(false);
       navigateTo("/login");
     } catch (error) {
-      toast.error(error.response.data.message), setIsAuthorized(true);
+      toast.error(error.response?.data?.message || "Logout failed");
+      setIsAuthorized(true);
     }
   };
 
   return (
     <nav className={isAuthorized ? "navbarShow" : "navbarHide"}>
       <div className="container">
+        {/* Logo Section */}
         <div className="logo">
           <img src={lawyerImage} alt="logo" />
         </div>
+
+        {/* Navigation Menu */}
         <ul className={!show ? "menu" : "show-menu menu"}>
           <li>
-            <Link to={"/"} onClick={() => setShow(false)}>
+            <Link to="/" onClick={() => setShow(false)}>
               HOME
             </Link>
           </li>
-          {/* <li><Link to={"/blogs"} onClick={() => setShow(true)}>
-              BLOGS
-            </Link></li>
-            <li><Link
-              to={"/chatbot"}
-              onClick={() => setShow(true)}>
-              CHATBOT
-            </Link></li> */}
-            {user && user.role === "User" ? (
+
+          {/* User-Specific Links */}
+          {user && user.role === "User" && (
             <>
               <li>
-                <Link to={"/blogs"} onClick={() => setShow(true)}>
+                <Link to="/blogs" onClick={() => setShow(false)}>
                   BLOGS
                 </Link>
               </li>
               <li>
-                <Link to={"/chatbot"} onClick={() => setShow(true)}>
+                <Link to="/chatbot" onClick={() => setShow(false)}>
                   CHATBOT
                 </Link>
               </li>
+              <li>
+                <Link to="/lawyers" onClick={() => setShow(false)}>
+                  LAWYERS
+                </Link>
+              </li>
+              <li>
+                <Link to="/imp_links" onClick={() => setShow(false)}>
+                  IMP LINKES
+                </Link>
+              </li>
             </>
-          ) : (
-            <></>
           )}
+
+          {/* Common Links */}
           <li>
-            <Link to={"/job/getall"} onClick={() => setShow(false)}>
+            <Link to="/job/getall" onClick={() => setShow(false)}>
               ALL DOCUMENTS
             </Link>
           </li>
           <li>
-            <Link to={"/applications/me"} onClick={() => setShow(false)}>
-              {user && user.role === "Lawyer"
-                ? "APPLICANT'S APPLICATIONS"
-                : "MY APPLICATIONS"}
+            <Link to="/applications/me" onClick={() => setShow(false)}>
+              {user && user.role === "Lawyer" ? "APPLICANT'S APPLICATIONS" : "MY APPLICATIONS"}
             </Link>
           </li>
-          {user && user.role === "Lawyer" ? (
+
+          {/* Lawyer-Specific Links */}
+          {user && user.role === "Lawyer" && (
             <>
               <li>
-                <Link to={"/job/post"} onClick={() => setShow(false)}>
+                <Link to="/job/post" onClick={() => setShow(false)}>
                   POST NEW DOCUMENTS
                 </Link>
               </li>
               <li>
-                <Link to={"/job/me"} onClick={() => setShow(false)}>
+                <Link to="/job/me" onClick={() => setShow(false)}>
                   VIEW YOUR DOCUMENTS
                 </Link>
               </li>
             </>
-          ) : (
-            <></>
           )}
 
-          <button onClick={handleLogout}>LOGOUT</button>
+          {/* Logout Button */}
+          {isAuthorized && (
+            <li>
+              <button onClick={handleLogout} className="logout-btn">
+                LOGOUT
+              </button>
+            </li>
+          )}
         </ul>
+
+        {/* Hamburger Menu for Mobile */}
         <div className="hamburger">
           <GiHamburgerMenu onClick={() => setShow(!show)} />
         </div>

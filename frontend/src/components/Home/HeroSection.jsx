@@ -37,6 +37,7 @@ const HeroSection = () => {
           <div className="title">
             <h1>Get AI-Powered Legal Assistance</h1>
             <h1>Instant Legal Help at Your Fingertips</h1>
+            
             <p>
               Our AI-based legal advisor assists with legal queries, case analysis, and document preparation, ensuring you get the right guidance instantly.
             </p>

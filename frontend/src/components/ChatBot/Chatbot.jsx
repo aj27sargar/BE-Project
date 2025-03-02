@@ -1,29 +1,22 @@
-import React, { useEffect, useState } from "react";
-import './Chatbot.css'; // Adjust the path if necessary
+import React, { useEffect } from "react";
+import "./Chatbot.css"; // Adjust the path if necessary
+import bg from "../../assets/lawyer4.jpg"
 
 const Chatbot = () => {
-  const [botpressLoaded, setBotpressLoaded] = useState(false);
-
   useEffect(() => {
     // Inject Botpress script when the component mounts
     const injectBotpressScript = () => {
-      // Main Botpress script
       const script = document.createElement("script");
-      script.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js"; // Updated script source
+      script.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js"; 
       script.async = true;
-      script.onload = () => {
-        setBotpressLoaded(true); // Set loaded state to true once script is loaded
-      };
       document.body.appendChild(script);
 
-      // Configuration script
       const configScript = document.createElement("script");
-      configScript.src = "https://files.bpcontent.cloud/2024/10/24/15/20241024153351-83MMV45V.js"; // Updated config source
+      configScript.src = "https://files.bpcontent.cloud/2025/02/24/12/20250224124337-G1WSOQIU.js"; 
       configScript.async = true;
       document.body.appendChild(configScript);
 
       return () => {
-        // Cleanup script elements when component unmounts
         document.body.removeChild(script);
         document.body.removeChild(configScript);
       };
@@ -32,63 +25,21 @@ const Chatbot = () => {
     injectBotpressScript();
   }, []);
 
-  const handleButtonClick = (action) => {
-    if (!botpressLoaded) {
-      console.error("Botpress is not loaded yet.");
-      return; // Prevent action if Botpress is not loaded
-    }
-
-    switch (action) {
-      case 'open':
-        window.botpress.open();
-        break;
-      case 'close':
-        window.botpress.close();
-        break;
-      case 'toggle':
-        window.botpress.toggle();
-        break;
-      case 'configure':
-        window.botpress.config({
-          configuration: {
-            botName: "New Webchat Title",
-            botDescription: "Updated description",
-          },
-        });
-        break;
-      case 'sendEvent':
-        window.botpress.sendEvent({
-          type: "event-sent", // Arbitrary event type
-        });
-        break;
-      case 'sendMessage':
-        window.botpress.sendMessage("Hi! My group no is 12.");
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
-    <div className="flex gap-2 fixed bottom-0 m-6 z-20">
-      <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded" onClick={() => handleButtonClick('open')}>
-        Open
-      </button>
-      <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded" onClick={() => handleButtonClick('close')}>
-        Close
-      </button>
-      <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded" onClick={() => handleButtonClick('toggle')}>
-        Toggle
-      </button>
-      <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded" onClick={() => handleButtonClick('configure')}>
-        Configure
-      </button>
-      <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded" onClick={() => handleButtonClick('sendEvent')}>
-        Send Event
-      </button>
-      <button className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded" onClick={() => handleButtonClick('sendMessage')}>
-        Send Message
-      </button>
+    <div className="chatbot-container">
+      <div className="chatbot-content">
+        <h1>Welcome to Our Legal AI Chatbot 🤖</h1>
+        <p>Ask me any legal questions, and I'll assist you with accurate and instant responses.</p>
+        <img src={bg} alt="Chatbot" className="chatbot-image" />
+        <h2>What can I help you with?</h2>
+        <ul>
+          <li>📜 Legal document guidance</li>
+          <li>⚖️ Basic legal advice</li>
+          <li>📅 Book appointments with lawyers</li>
+          <li>🔍 Case law references</li>
+        </ul>
+        <p>Click on the chatbot in the bottom-right corner to start chatting!</p>
+      </div>
     </div>
   );
 };
