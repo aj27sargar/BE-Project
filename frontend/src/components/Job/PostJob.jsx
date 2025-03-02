@@ -3,6 +3,8 @@
   import toast from "react-hot-toast";
   import { useNavigate } from "react-router-dom";
   import { Context } from "../../main";
+  // import { BASE_URL } from '../../utils/config'
+
   const PostJob = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -31,7 +33,8 @@
       }
       await axios
         .post(
-          "http://localhost:4000/api/v1/job/post",
+          "http://be-project-axa3.onrender.com/api/v1/job/post",
+          // "http://localhost:4000/api/v1/job/post",
           fixedSalary.length >= 4
             ? {
                 title,

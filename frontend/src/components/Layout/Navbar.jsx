@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
 import lawyerImage from "../../assets/lawyer3.jpeg";
+// import { BASE_URL } from '../../utils/config'
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
@@ -13,7 +14,8 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/user/logout", {
+      const response = await axios.get("http://be-project-axa3.onrender.com/api/v1/user/logout", {
+        // const response = await axios.get("http://localhost:4000/api/v1/user/logout", {
         withCredentials: true,
       });
       toast.success(response.data.message);
