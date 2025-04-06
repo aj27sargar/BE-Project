@@ -23,10 +23,10 @@ const MyApplications = () => {
       try {
         const endpoint =
           user?.role === "Lawyer"
-            ? "http://be-project-axa3.onrender.com/api/v1/application/lawyer/getall"
-            : "http://be-project-axa3.onrender.com/api/v1/application/user/getall";
-            // ? "http://localhost:4000/api/v1/application/lawyer/getall"
-            // : "http://localhost:4000/api/v1/application/user/getall";
+            // ? "http://be-project-axa3.onrender.com/api/v1/application/lawyer/getall"
+            // : "http://be-project-axa3.onrender.com/api/v1/application/user/getall";
+            ? "http://localhost:4000/api/v1/application/lawyer/getall"
+            : "http://localhost:4000/api/v1/application/user/getall";
 
         const { data } = await axios.get(endpoint, { withCredentials: true });
         setApplications(data.applications);
@@ -40,8 +40,8 @@ const MyApplications = () => {
 
   const deleteApplication = async (id) => {
     try {
-      const { data } = await axios.delete(`http://be-project-axa3.onrender.com/api/v1/application/delete/${id}`, {
-        // const { data } = await axios.delete(`http://localhost:4000/api/v1/application/delete/${id}`, {
+      // const { data } = await axios.delete(`http://be-project-axa3.onrender.com/api/v1/application/delete/${id}`, {
+        const { data } = await axios.delete(`http://localhost:4000/api/v1/application/delete/${id}`, {
         withCredentials: true,
       });
 
@@ -55,8 +55,8 @@ const MyApplications = () => {
   const updateApplicationStatus = async (id, status) => {
     try {
       const { data } = await axios.put(
-        `http://be-project-axa3.onrender.com/api/v1/application/approve/${id}`,
-        // `http://localhost:4000/api/v1/application/approve/${id}`,
+        // `http://be-project-axa3.onrender.com/api/v1/application/approve/${id}`,
+        `http://localhost:4000/api/v1/application/approve/${id}`,
         { status },
         { withCredentials: true }
       );

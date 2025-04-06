@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import sudhanshuImage from "../../assets/lawyer13.jpg";
-import abhishekImage from "../../assets/lawyer14.jpg";
-import RohanImage from "../../assets/lawyer15.jpg";
+import sudhanshuImage from "../../assets/profile.png";
+import abhishekImage from "../../assets/profile.png";
+import RohanImage from "../../assets/profile.png";
 
 const Lawyers = () => {
   const navigate = useNavigate();

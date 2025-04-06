@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import emailjs from "@emailjs/browser";
-import sudhanshuImage from "../../assets/lawyer13.jpg";
-import abhishekImage from "../../assets/lawyer14.jpg";
-import RohanImage from "../../assets/lawyer15.jpg";
+import sudhanshuImage from "../../assets/profile.png";
+import abhishekImage from "../../assets/profile.png";
+import RohanImage from "../../assets/profile.png";
 
 const lawyers = [
   {

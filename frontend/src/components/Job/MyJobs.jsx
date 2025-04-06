@@ -377,8 +377,8 @@ const MyJobs = () => {
     const fetchJobs = async () => {
       try {
         const { data } = await axios.get(
-          "http://be-project-axa3.onrender.com/api/v1/job/getmyjobs",
-          // "http://localhost:4000/api/v1/job/getmyjobs",
+          // "http://be-project-axa3.onrender.com/api/v1/job/getmyjobs",
+          "http://localhost:4000/api/v1/job/getmyjobs",
           { withCredentials: true }
         );
         setMyJobs(data.myJobs);
@@ -408,8 +408,8 @@ const MyJobs = () => {
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
-      .put(`http://be-project-axa3.onrender.com/api/v1/job/update/${jobId}`, updatedJob, {
-        // .put(`http://localhost:4000/api/v1/job/update/${jobId}`, updatedJob, {
+      // .put(`http://be-project-axa3.onrender.com/api/v1/job/update/${jobId}`, updatedJob, {
+        .put(`http://localhost:4000/api/v1/job/update/${jobId}`, updatedJob, {
         withCredentials: true,
       })
       .then((res) => {
@@ -424,8 +424,8 @@ const MyJobs = () => {
   // Delete Job
   const handleDeleteJob = async (jobId) => {
     await axios
-      .delete(`http://be-project-axa3.onrender.com/api/v1/job/delete/${jobId}`, {
-        // .delete(`http://localhost:4000/api/v1/job/delete/${jobId}`, {
+      // .delete(`http://be-project-axa3.onrender.com/api/v1/job/delete/${jobId}`, {
+        .delete(`http://localhost:4000/api/v1/job/delete/${jobId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -440,8 +440,8 @@ const MyJobs = () => {
   // Approve Job
   const handleApproveJob = async (jobId) => {
     await axios
-      .put(`http://be-project-axa3.onrender.com/api/v1/job/approve/${jobId}`, {}, { withCredentials: true })
-      // .put(`http://localhost:4000/api/v1/job/approve/${jobId}`, {}, { withCredentials: true })
+      // .put(`http://be-project-axa3.onrender.com/api/v1/job/approve/${jobId}`, {}, { withCredentials: true })
+      .put(`http://localhost:4000/api/v1/job/approve/${jobId}`, {}, { withCredentials: true })
       .then((res) => {
         toast.success(res.data.message);
         setMyJobs((prevJobs) =>

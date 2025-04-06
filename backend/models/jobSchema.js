@@ -30,11 +30,11 @@ const jobSchema = new mongoose.Schema({
     required: [true, "Please provide location."],
     minLength: [5, "Location must contian at least 10 characters!"],
   },
-  fixedSalary: {
-    type: Number,
-    minLength: [1, "Salary must contain at least 4 digits"],
-    maxLength: [9, "Salary cannot exceed 9 digits"],
-  },
+  // fixedSalary: {
+  //   type: Number,
+  //   minLength: [1, "Salary must contain at least 4 digits"],
+  //   maxLength: [9, "Salary cannot exceed 9 digits"],
+  // },
   salaryFrom: {
     type: Number,
     minLength: [1, "Salary must contain at least 4 digits"],

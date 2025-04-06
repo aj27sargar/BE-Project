@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 import HeroSection from "./HeroSection";
 import HowItWorks from "./HowItWorks";
 import PopularCategories from "./PopularCategories";
-import PopularCompanies from "./PopularCompanies";
+//import PopularCompanies from "./PopularCompanies";
 import Footer from "./Footer";
 
 const Home = () => {
@@ -23,7 +23,7 @@ const Home = () => {
         <HeroSection />
         <HowItWorks />
         <PopularCategories />
-        <PopularCompanies />
+        {/* <PopularCompanies /> */}
         <Footer />
       </section>
     </>
