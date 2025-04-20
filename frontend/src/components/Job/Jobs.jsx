@@ -13,7 +13,7 @@ const Jobs = () => {
     try {
       axios
         // .get("http://be-project-axa3.onrender.com/api/v1/job/getall", {
-          .get("http://localhost:4000/api/v1/job/getall", {
+          .get("https://be-project-ek42.onrender.com/api/v1/job/getall", {
           withCredentials: true,
         })
         .then((res) => {

@@ -34,7 +34,7 @@
       await axios
         .post(
           // "http://be-project-axa3.onrender.com/api/v1/job/post",
-          "http://localhost:4000/api/v1/job/post",
+          "https://be-project-ek42.onrender.com/api/v1/job/post",
           fixedSalary.length >= 4
             ? {
                 title,

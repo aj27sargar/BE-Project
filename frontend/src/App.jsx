@@ -31,7 +31,7 @@ const App = () => {
       try {
         const response = await axios.get(
           // "http://be-project-axa3.onrender.com/api/v1/user/getuser",
-          "http://localhost:4000/api/v1/user/getuser",
+          "https://be-project-ek42.onrender.com/api/v1/user/getuser",
           {
             withCredentials: true,
           }
